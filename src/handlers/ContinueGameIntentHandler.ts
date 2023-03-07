@@ -13,16 +13,16 @@ export const ContinueGameIntentHandler = {
   },
   handle(handlerInput) {
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
     const continueGame = Alexa.getSlotValue(
       handlerInput.requestEnvelope,
       "continueGame"
     );
 
-    console.log("HEREEEEE!");
     console.log(continueGame);
 
-    if (continueGame && continueGame.includes("no"))
-      return EndGameIntentHandler.handle(handlerInput);
-    else return RollDiceIntentHandler.handle(handlerInput);
+    if (continueGame && continueGame == "yes")
+      return RollDiceIntentHandler.handle(handlerInput);
+    else return EndGameIntentHandler.handle(handlerInput);
   },
 };
