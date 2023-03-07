@@ -1,6 +1,10 @@
 import * as Alexa from "ask-sdk";
+import AWS from "aws-sdk";
 import { escapeXmlCharacters } from "ask-sdk";
 import { isIntent } from "./isIntent";
+import { v4 as uuidv4 } from "uuid";
+
+//Handlers
 import { KartiksRollDiceIntentHandler } from "./handlers/KartiksRollDiceIntentHandler";
 import { StartGameIntentHandler } from "./handlers/StartGameIntentHandler";
 import { TopTenIntentHandler } from "./handlers/TopTenIntentHandler";
@@ -8,6 +12,28 @@ import { RollDiceIntentHandler } from "./handlers/RollDiceIntentHandler";
 import { ContinueGameIntentHandler } from "./handlers/ContinueGameIntentHandler";
 import { DiscontinueGameIntentHandler } from "./handlers/DiscontinueGameIntentHandler";
 import { AddNameIntentHandler } from "./handlers/AddNameIntentHandler";
+
+const dynamodb = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
+
+// //Inserting test data
+// const newHighScoreID = uuidv4();
+
+// const params = {
+//   TableName: "HighScores",
+//   Item: {
+//     highScoreID: newHighScoreID,
+//     name: "Test",
+//     score: 26,
+//   },
+// };
+
+// dynamodb.put(params, (err, data) => {
+//   if (err) {
+//     console.error(err);
+//   } else {
+//     console.log(data);
+//   }
+// });
 
 const CancelOrStopIntentHandler: Alexa.RequestHandler = {
   canHandle: isIntent("AMAZON.CancelIntent", "AMAZON.StopIntent"),
