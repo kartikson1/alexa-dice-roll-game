@@ -14,7 +14,6 @@ export const TopTenIntentHandler = {
     let speechText = "The top high scores are: ";
 
     try {
-      //Todo! Right now, it's fetching 10 high scores in random order, we wanna fetch in descending.
       const params = {
         TableName: "HighScores",
       };
@@ -23,9 +22,10 @@ export const TopTenIntentHandler = {
       if (result.Items.length === 0) {
         speechText = "There are no high scores yet.";
       } else {
-        for (let i = 0; i < result.Items.length; i++) {
-          speechText += `${i + 1}: ${result.Items[i].name} with a score of ${
-            result.Items[i].score
+        const sortedItems = result.Items.sort((a, b) => b.score - a.score);
+        for (let i = 0; i < sortedItems.length; i++) {
+          speechText += `${i + 1}: ${sortedItems[i].name} with a score of ${
+            sortedItems[i].score
           }. `;
         }
       }
