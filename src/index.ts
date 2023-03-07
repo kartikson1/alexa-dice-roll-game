@@ -6,7 +6,7 @@ import { StartGameIntentHandler } from "./handlers/StartGameIntentHandler";
 import { TopTenIntentHandler } from "./handlers/TopTenIntentHandler";
 import { RollDiceIntentHandler } from "./handlers/RollDiceIntentHandler";
 import { ContinueGameIntentHandler } from "./handlers/ContinueGameIntentHandler";
-import { EndGameIntentHandler } from "./handlers/EndGameIntentHandler";
+import { DiscontinueGameIntentHandler } from "./handlers/DiscontinueGameIntentHandler";
 import { AddNameIntentHandler } from "./handlers/AddNameIntentHandler";
 
 const CancelOrStopIntentHandler: Alexa.RequestHandler = {
@@ -65,7 +65,7 @@ export const handler = Alexa.SkillBuilders.custom()
     TopTenIntentHandler,
     RollDiceIntentHandler,
     ContinueGameIntentHandler,
-    EndGameIntentHandler,
+    DiscontinueGameIntentHandler,
     AddNameIntentHandler
   )
   .addErrorHandler(() => true, ErrorHandler)
