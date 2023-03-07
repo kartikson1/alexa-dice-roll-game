@@ -18,8 +18,11 @@ export const ContinueGameIntentHandler = {
       "continueGame"
     );
 
-    if (continueGame === "yes")
-      return RollDiceIntentHandler.handle(handlerInput);
-    else return EndGameIntentHandler.handle(handlerInput);
+    console.log("HEREEEEE!");
+    console.log(continueGame);
+
+    if (continueGame && continueGame.includes("no"))
+      return EndGameIntentHandler.handle(handlerInput);
+    else return RollDiceIntentHandler.handle(handlerInput);
   },
 };

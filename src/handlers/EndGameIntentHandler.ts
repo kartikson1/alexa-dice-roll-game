@@ -16,15 +16,17 @@ export const EndGameIntentHandler = {
 
     const speechText = Constants.END_GAME_MESSAGE;
     const promptText = Constants.ADD_SCORE_MESSAGE;
-    const repromptText = "Please say yes or no.";
+    // const repromptText = "Please say yes or no.";
 
-    return handlerInput.responseBuilder
-      .speak(`${speechText} ${promptText}`)
-      .reprompt(repromptText)
-      .addElicitSlotDirective("AddNameSlot", {
-        name: "AddNameSlot",
-        confirmationStatus: "NONE",
-      })
-      .getResponse();
+    return (
+      handlerInput.responseBuilder
+        .speak(`${speechText} ${promptText}`)
+        // .reprompt(repromptText)
+        .addElicitSlotDirective("AddNameSlot", {
+          name: "AddNameSlot",
+          confirmationStatus: "NONE",
+        })
+        .getResponse()
+    );
   },
 };
