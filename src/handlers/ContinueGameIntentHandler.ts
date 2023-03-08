@@ -1,7 +1,7 @@
 import * as Alexa from "ask-sdk";
 import { RollDiceIntentHandler } from "./RollDiceIntentHandler";
 import { DiscontinueGameIntentHandler } from "./DiscontinueGameIntentHandler";
-import { FallbackHandler } from "./FallBackHandler";
+import { FallbackIntentHandler } from "./FallbackIntentHandler";
 
 export const ContinueGameIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
@@ -27,6 +27,6 @@ export const ContinueGameIntentHandler: Alexa.RequestHandler = {
       return RollDiceIntentHandler.handle(handlerInput);
     else if (continueGame && continueGame.match(/^(no|nope|nah|don't|)$/i))
       return DiscontinueGameIntentHandler.handle(handlerInput);
-    else return FallbackHandler.handle(handlerInput);
+    else return FallbackIntentHandler.handle(handlerInput);
   },
 };

@@ -2,7 +2,7 @@ import * as Alexa from "ask-sdk";
 import * as Constants from "../constants";
 import { v4 as uuidv4 } from "uuid";
 import { dynamodb } from "../db";
-import { FallbackHandler } from "./FallBackHandler";
+import { FallbackIntentHandler } from "./FallbackIntentHandler";
 
 export const AddNameIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
@@ -55,6 +55,6 @@ export const AddNameIntentHandler: Alexa.RequestHandler = {
       const speechText =
         Constants.SCORE_NOT_ADDED_MESSAGE + Constants.END_GAME_MESSAGE;
       return handlerInput.responseBuilder.speak(speechText).getResponse();
-    } else return FallbackHandler.handle(handlerInput);
+    } else return FallbackIntentHandler.handle(handlerInput);
   },
 };

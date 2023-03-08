@@ -10,7 +10,7 @@ import { RollDiceIntentHandler } from "./handlers/RollDiceIntentHandler";
 import { ContinueGameIntentHandler } from "./handlers/ContinueGameIntentHandler";
 import { DiscontinueGameIntentHandler } from "./handlers/DiscontinueGameIntentHandler";
 import { AddNameIntentHandler } from "./handlers/AddNameIntentHandler";
-import { FallbackHandler } from "./handlers/FallBackHandler";
+import { FallbackIntentHandler } from "./handlers/FallbackIntentHandler";
 import { CommandsHelpIntentHandler } from "./handlers/CommandsHelpIntentHandler";
 
 const CancelOrStopIntentHandler: Alexa.RequestHandler = {
@@ -50,6 +50,24 @@ function ErrorHandler(handlerInput: Alexa.HandlerInput, error: Error) {
     .getResponse();
 }
 
+//Todo RepeatIntentHandler - if a user wants the last response to be repeated
+// Todo store last response in sessionAttributes across all handlers
+// const RepeatIntentHandler = {
+//   canHandle(handlerInput) {
+//     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+//       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.RepeatIntent';
+//   },
+//   handle(handlerInput) {
+//     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+//     const lastResponse = sessionAttributes.lastResponse;
+
+//     return handlerInput.responseBuilder
+//       .speak(lastResponse.outputSpeech.ssml)
+//       .reprompt(lastResponse.reprompt.outputSpeech.ssml)
+//       .getResponse();
+//   },
+// };
+
 export const handler = Alexa.SkillBuilders.custom()
   .addRequestHandlers(
     CancelOrStopIntentHandler,
@@ -60,7 +78,7 @@ export const handler = Alexa.SkillBuilders.custom()
     ContinueGameIntentHandler,
     DiscontinueGameIntentHandler,
     AddNameIntentHandler,
-    FallbackHandler,
+    FallbackIntentHandler,
     CommandsHelpIntentHandler
   )
   .addErrorHandler(() => true, ErrorHandler)

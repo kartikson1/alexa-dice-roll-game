@@ -1,7 +1,7 @@
 import * as Constants from "../constants";
 import * as Alexa from "ask-sdk";
 
-export const FallbackHandler: Alexa.RequestHandler = {
+export const FallbackIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
     return (

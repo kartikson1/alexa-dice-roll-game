@@ -31,7 +31,7 @@ export const SCORE_NOT_ADDED_MESSAGE =
 export const ERROR_MESSAGE =
   "Oops, something went wrong. I promise I didn't try to sneak in an extra 6 on the dice. Let me fix this and get back to you, okay?";
 
-export const FALLBACK_MESSAGE = `I'm sorry, I don't understand what you're trying to say. Please try saying something like "start a new game", "roll the dice", "yes continue", "no don't continue", or "top ten high scores" to interact with the game. If you need help, you can say "commands" at any time to hear a list of available commands.`;
+export const FALLBACK_MESSAGE = `I'm sorry, I don't understand what you're trying to say. Please try saying something like "start a new game", "roll the dice", "yes continue", "no don't continue", or "top ten high scores" to interact with the game. If you need help, you can say "help" at any time to hear a list of available commands.`;
 
 export const FALLBACK_REPROMPT = "What would you like to do?";
 
