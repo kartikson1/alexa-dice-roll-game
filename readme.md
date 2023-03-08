@@ -56,3 +56,7 @@ While I have attempted to handle some of the edge cases and unexpected inputs, I
 
 1. Unit tests, for each handler
 2. Integration tests
+
+## Event tracking
+
+Event tracking mechanisms can be set up using CloudWatch
