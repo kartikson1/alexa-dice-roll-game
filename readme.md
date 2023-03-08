@@ -1,5 +1,7 @@
 # Alexa Rolls the Dice: A Playful Game of Chance
 
+### [Click to view the video Demo!](https://youtu.be/Dvtr54TPEJ8)
+
 Welcome to the Voice-Controlled Dice Game on Alexa! This game is a fully functioning demo where you can roll virtual dice and try your luck. Here's how the game works:
 
 - At the start of each session, you can choose to start a new game or listen to the top 10 high scores.
@@ -44,11 +46,35 @@ User: "Yes add name Kartik"
 <br/>
 Alexa: "Congratulations, Kartik. Your score has been added to the high score list. Thanks for playing our Dice Game! Hope you had a blast and didn't break any furniture."
 
+<hr>
+
+Note: This skill also properly handles invalid inputs using FallbackIntentHandler. Here's how that looks -
+<br />
+User: "Alexa, open volley skill and turn on the game"
+<br/>
+Alexa: "Welcome to Volley's Dice Game! Do you want to start a new game or hear the top 10 high scores?"
+<br/>
+User: "ajhsbdfjsds sdifubkkd"
+<br />
+Alexa: "I'm sorry, I don't understand what you're trying to say. Please try saying something like "start a new game", "roll the dice", "yes continue", "no don't continue", or "top ten high scores" to interact with the game. If you need help, you can say "help" at any time to hear a list of available commands."
+<br />
+User: "help"
+<br />
+Alexa: "Here are some commands you can say: "turn on the game", "start a new game", "top ten high scores", "roll the dice", "yes continue", "no don't continue", "yes add name xyz", "no don't add name", and more"
+
 ## Technical details
 
 This skill was developed by utilizing AWS Lambda and the Alexa Skills Kit SDK for Node.js with TypeScript, and integrating DynamoDB as the database to store High Scores. The code includes [8 important handlers](https://github.com/kartikson1/alexa-dice-roll-game/tree/main/src/handlers) apart from the in-built ones for intents that handle the functionality of the game.
 
 While I have attempted to handle some of the edge cases and unexpected inputs, I would love the opportunity to fix, refine, or develop anything I might have missed.
+
+## Lambda details
+
+I have allowed execute-api:Invoke for all resources in my Lambda, so it can be invoked by any client including the reviewers of this assignment. The ARN can be found in package.json.
+
+## Alexa skill details
+
+Skill ID: amzn1.ask.skill.9b9c5176-06c2-4ca6-9091-1f316b3d2b41
 
 ## Tests
 
