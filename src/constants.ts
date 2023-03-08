@@ -14,7 +14,7 @@ export const CONTINUE_MESSAGE =
   "The dice are itching to be rolled again. Will you take a chance and go for another round?";
 
 export const ADD_SCORE_MESSAGE =
-  "Gotcha. Do you want to add your name to the high score list?";
+  "Gotcha. Do you want to add your name to the high score list? If so, also provide your name. Otherwise quit.";
 
 export const NAME_PROVIDED_MESSAGE =
   "Your score has been added to the high score list!";

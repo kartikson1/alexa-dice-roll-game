@@ -19,7 +19,10 @@ export const ContinueGameIntentHandler = {
 
     console.log(continueGame);
 
-    if (continueGame && continueGame == "yes")
+    if (
+      continueGame &&
+      continueGame.match(/^(yes|yep|yeah|yup|sure|okay|ok|absolutely)$/i)
+    )
       return RollDiceIntentHandler.handle(handlerInput);
     else return DiscontinueGameIntentHandler.handle(handlerInput);
   },

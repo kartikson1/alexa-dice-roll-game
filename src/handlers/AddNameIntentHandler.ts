@@ -15,7 +15,7 @@ export const AddNameIntentHandler = {
     const addName = Alexa.getSlotValue(handlerInput.requestEnvelope, "addName");
     const name = Alexa.getSlotValue(handlerInput.requestEnvelope, "name");
 
-    if (addName && addName == "yes") {
+    if (addName && addName.match(/^(yes|yeah|yup|sure|okay|ok|absolutely)$/i)) {
       const score = sessionAttributes.score;
       const newHighScoreID = uuidv4();
 
