@@ -1,7 +1,6 @@
 import * as Alexa from "ask-sdk";
-import AWS from "aws-sdk";
-
-const dynamodb = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
+import { dynamodb } from "../db";
+import * as Constants from "../constants";
 
 export const TopTenIntentHandler = {
   canHandle(handlerInput) {
@@ -11,7 +10,7 @@ export const TopTenIntentHandler = {
     );
   },
   async handle(handlerInput) {
-    let speechText = "The top high scores are: ";
+    let speechText = Constants.HIGH_SCORES_MESSAGE;
 
     try {
       const params = {
@@ -20,7 +19,7 @@ export const TopTenIntentHandler = {
       const result = await dynamodb.scan(params).promise();
 
       if (result.Items.length === 0) {
-        speechText = "There are no high scores yet.";
+        speechText = Constants.NO_HIGH_SCORES_MESSAGE;
       } else {
         const sortedItems = result.Items.sort((a, b) => b.score - a.score);
         const topTenSortedItems = sortedItems.slice(0, 10);
@@ -31,14 +30,12 @@ export const TopTenIntentHandler = {
       }
     } catch (error) {
       console.log(`Error fetching high scores: ${error.message}`);
-      speechText = "There was an error fetching the high scores.";
+      speechText = Constants.ERROR_MESSAGE;
     }
 
     return handlerInput.responseBuilder
       .speak(speechText)
-      .reprompt(
-        "Do you want to start a new game or listen to the top high scores?"
-      )
+      .reprompt(Constants.ERROR_MESSAGE)
       .getResponse();
   },
 };

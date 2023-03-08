@@ -4,15 +4,12 @@ import { escapeXmlCharacters } from "ask-sdk";
 import { isIntent } from "./isIntent";
 
 //Handlers
-import { KartiksRollDiceIntentHandler } from "./handlers/KartiksRollDiceIntentHandler";
 import { StartGameIntentHandler } from "./handlers/StartGameIntentHandler";
 import { TopTenIntentHandler } from "./handlers/TopTenIntentHandler";
 import { RollDiceIntentHandler } from "./handlers/RollDiceIntentHandler";
 import { ContinueGameIntentHandler } from "./handlers/ContinueGameIntentHandler";
 import { DiscontinueGameIntentHandler } from "./handlers/DiscontinueGameIntentHandler";
 import { AddNameIntentHandler } from "./handlers/AddNameIntentHandler";
-
-const dynamodb = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
 
 const CancelOrStopIntentHandler: Alexa.RequestHandler = {
   canHandle: isIntent("AMAZON.CancelIntent", "AMAZON.StopIntent"),
@@ -65,7 +62,6 @@ export const handler = Alexa.SkillBuilders.custom()
     CancelOrStopIntentHandler,
     HelpIntentHandler,
     HelloIntentHandler,
-    KartiksRollDiceIntentHandler,
     StartGameIntentHandler,
     TopTenIntentHandler,
     RollDiceIntentHandler,

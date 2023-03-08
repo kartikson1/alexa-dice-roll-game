@@ -1,6 +1,4 @@
 import * as Alexa from "ask-sdk";
-import { isIntent } from "../isIntent";
-import * as Constants from "../constants";
 import { RollDiceIntentHandler } from "./RollDiceIntentHandler";
 import { DiscontinueGameIntentHandler } from "./DiscontinueGameIntentHandler";
 
