@@ -3,7 +3,7 @@ import { RollDiceIntentHandler } from "./RollDiceIntentHandler";
 import { DiscontinueGameIntentHandler } from "./DiscontinueGameIntentHandler";
 import { FallbackHandler } from "./FallBackHandler";
 
-export const ContinueGameIntentHandler = {
+export const ContinueGameIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
     return (
       Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&

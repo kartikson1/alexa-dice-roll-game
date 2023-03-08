@@ -2,7 +2,7 @@ import * as Alexa from "ask-sdk";
 import { dynamodb } from "../db";
 import * as Constants from "../constants";
 
-export const TopTenIntentHandler = {
+export const TopTenIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
     return (
       Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&

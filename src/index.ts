@@ -11,6 +11,7 @@ import { ContinueGameIntentHandler } from "./handlers/ContinueGameIntentHandler"
 import { DiscontinueGameIntentHandler } from "./handlers/DiscontinueGameIntentHandler";
 import { AddNameIntentHandler } from "./handlers/AddNameIntentHandler";
 import { FallbackHandler } from "./handlers/FallBackHandler";
+import { CommandsHelpIntentHandler } from "./handlers/CommandsHelpIntentHandler";
 
 const CancelOrStopIntentHandler: Alexa.RequestHandler = {
   canHandle: isIntent("AMAZON.CancelIntent", "AMAZON.StopIntent"),
@@ -18,15 +19,6 @@ const CancelOrStopIntentHandler: Alexa.RequestHandler = {
     return handlerInput.responseBuilder
       .speak("Goodbye!")
       .withShouldEndSession(true)
-      .getResponse();
-  },
-};
-
-const HelpIntentHandler: Alexa.RequestHandler = {
-  canHandle: isIntent("AMAZON.HelpIntent"),
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak("Try saying hello!")
       .getResponse();
   },
 };
@@ -61,7 +53,6 @@ function ErrorHandler(handlerInput: Alexa.HandlerInput, error: Error) {
 export const handler = Alexa.SkillBuilders.custom()
   .addRequestHandlers(
     CancelOrStopIntentHandler,
-    HelpIntentHandler,
     HelloIntentHandler,
     StartGameIntentHandler,
     TopTenIntentHandler,
@@ -70,7 +61,7 @@ export const handler = Alexa.SkillBuilders.custom()
     DiscontinueGameIntentHandler,
     AddNameIntentHandler,
     FallbackHandler,
-    HelpIntentHandler
+    CommandsHelpIntentHandler
   )
   .addErrorHandler(() => true, ErrorHandler)
   .lambda();

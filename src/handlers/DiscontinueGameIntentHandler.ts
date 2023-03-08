@@ -1,7 +1,7 @@
 import * as Alexa from "ask-sdk";
 import * as Constants from "../constants";
 
-export const DiscontinueGameIntentHandler = {
+export const DiscontinueGameIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
     return (
       Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { dynamodb } from "../db";
 import { FallbackHandler } from "./FallBackHandler";
 
-export const AddNameIntentHandler = {
+export const AddNameIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
     return (
       Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&

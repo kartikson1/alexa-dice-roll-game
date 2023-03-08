@@ -2,7 +2,7 @@ import * as Alexa from "ask-sdk";
 import { isIntent } from "../isIntent";
 import * as Constants from "../constants";
 
-export const RollDiceIntentHandler = {
+export const RollDiceIntentHandler: Alexa.RequestHandler = {
   canHandle(handlerInput) {
     return (
       Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
