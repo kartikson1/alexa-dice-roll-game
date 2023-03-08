@@ -20,7 +20,7 @@ export const RollDiceIntentHandler = {
     } else {
       if (sessionAttributes.score) sessionAttributes.score += roll;
       else sessionAttributes.score = roll;
-      speechText = `You rolled a ${roll}. Your score is now ${sessionAttributes.score}. Do you want to continue the game?`;
+      speechText = `You rolled a ${roll}. Your score is now ${sessionAttributes.score}. ${Constants.CONTINUE_MESSAGE}`;
     }
     return handlerInput.responseBuilder
       .speak(speechText)

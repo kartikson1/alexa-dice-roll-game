@@ -10,11 +10,10 @@ export const DiscontinueGameIntentHandler = {
     );
   },
   handle(handlerInput) {
-    const speechText = Constants.END_GAME_MESSAGE;
     const promptText = Constants.ADD_SCORE_MESSAGE;
 
     return handlerInput.responseBuilder
-      .speak(`${speechText} ${promptText}`)
+      .speak(`${promptText}`)
       .withShouldEndSession(false)
       .getResponse();
   },
