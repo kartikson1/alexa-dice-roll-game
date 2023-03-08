@@ -1,6 +1,10 @@
 import * as Alexa from "ask-sdk";
 import { isIntent } from "../isIntent";
 import * as Constants from "../constants";
+import { v4 as uuidv4 } from "uuid";
+import AWS from "aws-sdk";
+
+const dynamodb = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
 
 export const AddNameIntentHandler = {
   canHandle(handlerInput) {
@@ -16,29 +20,71 @@ export const AddNameIntentHandler = {
 
     if (addName && addName == "yes") {
       // Retrieve high scores from sessionAttributes
-      const highScores = sessionAttributes.highScoreList || [];
       const score = sessionAttributes.score;
+      const newHighScoreID = uuidv4();
 
-      // Add new high score to the list
-      highScores.push({
-        name,
-        score,
-      });
+      // const putParams = {
+      //   TableName: "HighScores",
+      //   Item: {
+      //     highScoreID: newHighScoreID,
+      //     name,
+      //     score,
+      //   },
+      // };
 
-      // Sort the high scores list in descending order
-      highScores.sort((a, b) => b.score - a.score);
+      // const putParams = {
+      //   TableName: "HighScores",
+      //   Key: {
+      //     id: "highscores",
+      //   },
+      //   UpdateExpression:
+      //     "SET #scores = list_append(#scores, :newHighScore), #numScores = #numScores + :increment",
+      //   ExpressionAttributeNames: {
+      //     "#scores": "scores",
+      //     "#numScores": "numScores",
+      //   },
+      //   ExpressionAttributeValues: {
+      //     ":newHighScore": [
+      //       {
+      //         highScoreID: newHighScoreID,
+      //         name: name,
+      //         score: score,
+      //       },
+      //     ],
+      //     ":increment": 1,
+      //   },
+      // };
 
-      // Truncate the list to 10 elements
-      const topTenHighScores = highScores.slice(0, 10);
+      const putParams = {
+        TableName: "HighScores",
+        Key: {
+          highScoreID: newHighScoreID,
+        },
+        UpdateExpression: "SET #name = :name, #score = :score",
+        ExpressionAttributeNames: {
+          "#name": "name",
+          "#score": "score",
+        },
+        ExpressionAttributeValues: {
+          ":name": name,
+          ":score": score,
+        },
+      };
 
-      // Save high scores in sessionAttributes
-      sessionAttributes.highScores = topTenHighScores;
+      let speechText;
+
+      try {
+        await dynamodb.update(putParams).promise();
+        speechText = `Congratulations, ${name}. Your score has been added to the high score list. ${Constants.END_GAME_MESSAGE}`;
+      } catch (error) {
+        console.log(`Error adding high score: ${error.message}`);
+        speechText = `Error adding high score: ${error.message}`;
+      }
 
       // Reset sessionAttributes as game has ended
       sessionAttributes.score = 0;
       sessionAttributes.isGameInProgress = false;
 
-      const speechText = `Congratulations, ${name}. Your score has been added to the high score list. ${Constants.END_GAME_MESSAGE}`;
       return handlerInput.responseBuilder.speak(speechText).getResponse();
     } else {
       const speechText =

@@ -23,10 +23,10 @@ export const TopTenIntentHandler = {
         speechText = "There are no high scores yet.";
       } else {
         const sortedItems = result.Items.sort((a, b) => b.score - a.score);
-        for (let i = 0; i < sortedItems.length; i++) {
-          speechText += `${i + 1}: ${sortedItems[i].name} with a score of ${
-            sortedItems[i].score
-          }. `;
+        const topTenSortedItems = sortedItems.slice(0, 10);
+        for (let i = 0; i < topTenSortedItems.length; i++) {
+          speechText += `${i + 1}: ${topTenSortedItems[i].name}
+          with a score of ${topTenSortedItems[i].score}. `;
         }
       }
     } catch (error) {
