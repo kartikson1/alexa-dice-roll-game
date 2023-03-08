@@ -1,12 +1,12 @@
-# Alexa Dice Roll Game
+# Alexa Rolls the Dice: A Playful Game of Chance
 
 Welcome to the Voice-Controlled Dice Game on Alexa! This game is a fully functioning demo where you can roll virtual dice and try your luck. Here's how the game works:
 
+- At the start of each session, you can choose to start a new game or listen to the top 10 high scores.
 - Roll virtual dice and get a score of 2-6 for each roll.
 - If you roll a 1, your score will reset to zero.
 - After each roll, the game will ask you if you want to continue or end the game.
 - When the game ends, you can choose to add your name to the high score list.
-- At the start of each session, you can choose to start a new game or listen to the top 10 high scores.
 
 ## How to Play
 
@@ -48,4 +48,11 @@ Alexa: "Congratulations, Kartik. Your score has been added to the high score lis
 
 This skill was developed by utilizing AWS Lambda and the Alexa Skills Kit SDK for Node.js with TypeScript, and integrating DynamoDB as the database to store High Scores. The code includes [8 important handlers](https://github.com/kartikson1/alexa-dice-roll-game/tree/main/src/handlers) apart from the in-built ones for intents that handle the functionality of the game.
 
-While I have tried my best to handle edge cases and unexpected inputs, I would love the opportunity to fix, refine, or develop anything I might have missed.
+While I have attempted to handle some of the edge cases and unexpected inputs, I would love the opportunity to fix, refine, or develop anything I might have missed.
+
+## Tests
+
+[Tests](https://github.com/kartikson1/alexa-dice-roll-game/tree/main/src/tests) shall be implemented with Jest, a testing framework for Node. The following tests can be written using mock data:
+
+1. Unit tests, for each handler
+2. Integration tests
