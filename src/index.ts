@@ -10,6 +10,7 @@ import { RollDiceIntentHandler } from "./handlers/RollDiceIntentHandler";
 import { ContinueGameIntentHandler } from "./handlers/ContinueGameIntentHandler";
 import { DiscontinueGameIntentHandler } from "./handlers/DiscontinueGameIntentHandler";
 import { AddNameIntentHandler } from "./handlers/AddNameIntentHandler";
+import { FallbackHandler } from "./handlers/FallBackHandler";
 
 const CancelOrStopIntentHandler: Alexa.RequestHandler = {
   canHandle: isIntent("AMAZON.CancelIntent", "AMAZON.StopIntent"),
@@ -67,7 +68,9 @@ export const handler = Alexa.SkillBuilders.custom()
     RollDiceIntentHandler,
     ContinueGameIntentHandler,
     DiscontinueGameIntentHandler,
-    AddNameIntentHandler
+    AddNameIntentHandler,
+    FallbackHandler,
+    HelpIntentHandler
   )
   .addErrorHandler(() => true, ErrorHandler)
   .lambda();

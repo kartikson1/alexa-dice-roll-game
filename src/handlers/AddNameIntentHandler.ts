@@ -2,6 +2,7 @@ import * as Alexa from "ask-sdk";
 import * as Constants from "../constants";
 import { v4 as uuidv4 } from "uuid";
 import { dynamodb } from "../db";
+import { FallbackHandler } from "./FallBackHandler";
 
 export const AddNameIntentHandler = {
   canHandle(handlerInput) {
@@ -50,10 +51,10 @@ export const AddNameIntentHandler = {
       sessionAttributes.isGameInProgress = false;
 
       return handlerInput.responseBuilder.speak(speechText).getResponse();
-    } else {
+    } else if (addName && addName.match(/^(no|nope|nah|dont|don't|noo)$/i)) {
       const speechText =
         Constants.SCORE_NOT_ADDED_MESSAGE + Constants.END_GAME_MESSAGE;
       return handlerInput.responseBuilder.speak(speechText).getResponse();
-    }
+    } else return FallbackHandler.handle(handlerInput);
   },
 };
