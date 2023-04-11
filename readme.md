@@ -1,4 +1,4 @@
-# Alexa Rolls the Dice: A Playful Game of Chance
+# Dice Voyage: A Playful Game of Chance
 
 ### [Click to view the video Demo!](https://youtu.be/Dvtr54TPEJ8)
 
